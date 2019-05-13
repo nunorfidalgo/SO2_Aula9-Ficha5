@@ -42,7 +42,7 @@ int _tmain(int argc, LPTSTR argv[]) {
 
 	hT = CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)ThreadConsola, NULL, 0, NULL);
 	if (hT != NULL)
-		_tprintf(TEXT("Lancei uma thread..."));
+		_tprintf(TEXT("Lancei uma thread...\n"));
 	else
 		_tprintf(TEXT("Erro ao criar Thread\n"));
 
@@ -53,11 +53,11 @@ int _tmain(int argc, LPTSTR argv[]) {
 		hPipeTemp = CreateNamedPipe(PIPE_NAME, PIPE_ACCESS_OUTBOUND, PIPE_WAIT |
 			PIPE_TYPE_MESSAGE | PIPE_READMODE_MESSAGE, 1, sizeof(TCHAR), TAM * sizeof(TCHAR), 1000, NULL);
 		if (hPipeTemp == INVALID_HANDLE_VALUE) {
-			_tprintf(TEXT("[ERRO] Criar Named Pipe! (CreateNamedPipe)"));
+			_tprintf(TEXT("[ERRO] Criar Named Pipe! (CreateNamedPipe)\n"));
 			exit(-1);
 		}
 
-		_tprintf(TEXT("[ESCRITOR] Criar uma cópia do pipe..."));
+		_tprintf(TEXT("[ESCRITOR] Criar uma cópia do pipe...\n"));
 
 		_tprintf(TEXT("[ESCRITOR] Esperar ligação de um leitor...(ConnectNamedPipe)\n"));
 		if (!ConnectNamedPipe(hPipeTemp, NULL)) {
@@ -79,7 +79,7 @@ int _tmain(int argc, LPTSTR argv[]) {
 	_tprintf(TEXT("[ESCRITOR] Desligar o pipe (DisconnectNamedPipe)\n"));
 	for (i = 0; i > numClientes; i++) {
 		if (!DisconnectNamedPipe(hPipes[i])) {
-			_tprintf(TEXT("[ERRO] Desligar o pipe! (DisconnectNamedPipe)"));
+			_tprintf(TEXT("[ERRO] Desligar o pipe! (DisconnectNamedPipe)\n"));
 			exit(-1);
 		}
 		CloseHandle(hPipes[i]);

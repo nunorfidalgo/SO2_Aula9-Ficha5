@@ -29,6 +29,7 @@ int _tmain(int argc, LPTSTR argv[]) {
 		exit(-1);
 	}
 	_tprintf(TEXT("[LEITOR] Liguei-me...\n"));
+
 	while (1) {
 		ret = ReadFile(hPipe, buf, sizeof(buf), &n, NULL);
 		buf[n / sizeof(TCHAR)] = '\0';
